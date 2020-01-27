@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no,email=no,address=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, shrink-to-fit=no">
+        <title>iPicker</title>
+        <style>
+            *{margin:0;padding:0;box-sizing:border-box;outline:0}body{background:#1f1f1f}.container{overflow:hidden;margin:0 auto;width:1000px}h1{color:#fff;font-weight:400;font-size:40px;margin-top:30px;cursor:default}h1 span{font-size:14px;margin-left:10px}h1 div{float:right;margin-top:20px}h1 a{display:block;float:right;width:70px;height:28px;line-height:28px;background:#fff;color:#000;text-align:center;border-radius:14px;font-size:14px;font-weight:700;text-decoration:none}h1 a:first-child{margin-left:10px}h1 a:hover{background:#e9e9e9}.wrapper{background:#fff;border-radius:6px;padding:25px;margin:30px 0;overflow:hidden}.box{height:250px;padding-top:15px}.box:not(:last-child){border-bottom:#dfdfdf solid 1px}.box>div{float:left}.picker{width:650px;height:218px;border-right:#dfdfdf solid 1px}.picker>p{display:block;font-size:18px;font-weight:700}.demo{margin-top:14px;height:34px}.console{padding:0 12px}.console p{font-size:16px;font-weight:700;margin-bottom:20px}pre{font-size:14px;color:#09f;font-family:Consolas;padding-bottom:30px}#demo-2-1,#demo-2-2,#demo-2-3{height:34px}#demo-2-2,#demo-2-3{margin-top:12px}button{padding:6px 12px;display:block;float:left;background:#fff;color:#09f;font-size:14px;cursor:pointer;border:#09f solid 1px;border-radius:4px;margin:15px 10px 0 0;transition:.2s}button:hover{opacity:.75}button:active{opacity:1}
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <h1>iPicker<span>地区选择组件</span><div>
+                <a href="https://gitee.com/dreamer365/iPicker" target="_blank">码云</a>
+                <a href="https://github.com/Dreamer365/iPicker" target="_blank">Github</a>
+            </div></h1>
+            <div class="wrapper">
+                <div class="box">
+                    <div class="picker">
+                        <p>常规用法</p>
+                        <div class="demo" id="demo-1"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                    </div>
+                </div>
+                <div class="box" style="height: 300px;">
+                    <div class="picker" style="height: 268px;">
+                        <p>设置层级</p>
+                        <div class="demo" id="demo-2-1"></div>
+                        <div class="demo" id="demo-2-2"></div>
+                        <div class="demo" id="demo-2-3"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                        <pre></pre>
+                        <pre></pre>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="picker">
+                        <p>设置宽度</p>
+                        <div class="demo" id="demo-3"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="picker">
+                        <p>默认值</p>
+                        <div class="demo" id="demo-4"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="picker">
+                        <p>默认禁用</p>
+                        <div class="demo" id="demo-5"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="picker">
+                        <p>自定义占位文字</p>
+                        <div class="demo" id="demo-6"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="picker">
+                        <p>限制列表高度</p>
+                        <div class="demo" id="demo-7"></div>
+                        <div>
+                            <button class="reset">重置</button>
+                        </div>
+                    </div>
+                    <div class="console">
+                        <p>选择结果：</p>
+                        <pre></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/js/iPicker.min.js"></script>
+        <script>
+            var $pre = $( "pre" );
+            var $picker = $( ".picker" );
+            $.getJSON( "static/json/area.json" ).done(function ( res ) {
+                $( "#demo-1" ).iPicker({
+                    data: res,
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 0 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-2-1" ).iPicker({
+                    data: res,
+                    level: 1,
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 1 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-2-2" ).iPicker({
+                    data: res,
+                    level: 2,
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 2 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-2-3" ).iPicker({
+                    data: res,
+                    level: 3,
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 3 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-3" ).iPicker({
+                    data: res,
+                    width: 120,
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 4 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-4" ).iPicker({
+                    data: res,
+                    defaultValue: [ "230000", "230800", "230805" ],
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 5 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-5" ).iPicker({
+                    data: res,
+                    disabled: [ 1, 2 ],
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 6 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-6" ).iPicker({
+                    data: res,
+                    placeholder: [ "选择省份", "选择市", "选择区" ],
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 7 ).html( text + "<br><br>" + value );
+                    }
+                });
+                $( "#demo-7" ).iPicker({
+                    data: res,
+                    maxHeight: 180,
+                    onSelect: function ( v, t, set ) {
+                        var text = "[ " + t + " ]";
+                        var value = "[ " + v + " ]";
+                        $pre.eq( 8 ).html( text + "<br><br>" + value );
+                    }
+                });
+            })
+            $( "button.reset" ).each(function ( i ) {
+                $( this ).click(function () {
+                    $( this ).parents( ".picker" ).next().find( "pre" ).empty();
+                    $picker.eq( i ).children( ".demo" ).iPicker( "reset" );
+                })
+            })
+        </script>
+
+    </body>
+</html>
