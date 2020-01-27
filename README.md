@@ -120,7 +120,7 @@ Vue.use( iPicker );
 <hr/>
 
 <h2>开源协议</h2>
-<p><a href="https://gitee.com/dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
+<p><a href="https://github.com/Dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
 
 <hr/>
 
