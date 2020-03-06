@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="renderer" content="webkit">
-		<title>iPicker 地区选择</title>
-		<style>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="renderer" content="webkit">
+        <title>iPicker 地区选择</title>
+        <style>
            *{margin:0;padding:0;outline:0;box-sizing:border-box}body{background:#1f1f1f}.container{margin:0 auto;width:1200px}header{color:#fff;font-weight:400;font-size:46px;margin-top:30px;cursor:default}header span{font-size:15px}header div{float:right;margin-top:20px}header a{display:block;float:right;width:70px;height:28px;line-height:26px;background:#fff;color:#000;border:transparent solid 1px;text-align:center;border-radius:14px;font-size:14px;font-weight:700;text-decoration:none;transition:.2s}header a:first-child{margin-left:10px}header a:hover{background:0 0;color:#fff;border-color:#fff}.wrapper{background:#fff;border-radius:6px;padding:20px;margin:30px 0;display:flex}.wrapper .box{width:50%}.wrapper .box:first-of-type{border-right:#dfdfdf solid 1px}p.title{font-size:20px;font-weight:700;margin-bottom:15px}p.title+div{height:34px}.title>span{font-size:14px}.wrapper .box:last-of-type>*{margin-left:15px}.part{height:260px;margin-bottom:30px}.box:first-of-type .pre{padding-right:20px}pre{color:#09f;display:block;overflow:auto;width:100%;height:180px;font-size:13px;font-family:Consolas;margin-top:15px}pre i{font-style:normal}.has-button b{display:inline-block;padding:4px 12px 5px 12px;font-size:12px;background:#fff;color:#09f;cursor:pointer;border-radius:4px;margin:10px 8px 0 0;border:#09f solid 1px;transition:.2s;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.has-button b:hover{background:#09f;color:#fff}
         </style>
         <script src="js/es6-promise.auto.min.js"></script>
         <script src="js/axios.min.js"></script>
         <script src="js/iPicker.min.js"></script>
         <script>
-        	function json () {
+            function json () {
                 return new Promise(function ( resolve, reject ) {
                     axios.get( "json/area.json" ).then(function ( response ) {
                         if ( typeof response.data === "object" ) {
@@ -34,10 +34,10 @@
                 return document.querySelector( el ).nextElementSibling.querySelector( "pre" );
             }
         </script>
-	</head>
-	<body>
-	    
-	    <div class="container">
+    </head>
+    <body>
+        
+        <div class="container">
             <header>
                 <b>iPicker</b>
                 <span>地区选择组件</span>
@@ -47,7 +47,7 @@
                 </div>
             </header>
             <div class="wrapper">
-				<div class="box">
+                <div class="box">
                     <div class="part">
                         <p class="title">基本用法</p>
                         <div id="demo-a-1"></div>
@@ -111,16 +111,16 @@
                         <div class="pre"><pre></pre></div>
                     </div>
                 </div>
-				<script>
-					json().then(function ( data ) {
-						iPicker("#demo-a-1", {
-							theme: "select",
-							data: data,
+                <script>
+                    json().then(function ( data ) {
+                        iPicker("#demo-a-1", {
+                            theme: "select",
+                            data: data,
                             width: 180,
                             onSelect: function ( t, v, set ) {
                                 log( pre( "#demo-a-1" ), t, v, set );
                             }
-						});
+                        });
                         iPicker("#demo-a-2", {
                             theme: "select",
                             data: data,
@@ -239,11 +239,11 @@
                                 log( pre( "#demo-b-6" ), t, v, set );
                             }
                         });
-					})
-				</script>
+                    })
+                </script>
                 
             </div>
         </div>
 
-	</body>
+    </body>
 </html>
