@@ -191,7 +191,7 @@ iPicker.disabled( picker, [ 0, 1 ] );
 <hr/>
 
 ## 开源协议
-<p><a href="https://gitee.com/dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
+<p><a href="https://github.com/Dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
 
 <hr/>
 
