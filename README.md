@@ -1,130 +1,202 @@
 <br>
 <h1 align="center">iPicker</h1>
 
-<h4 align="center">地区选择组件&nbsp; | &nbsp;<a href="http://dreamer365.gitee.io/ipicker/" target="_blank">查看在线示例</a></h4>
+<h4 align="center">无任何依赖的轻量级地区选择组件</h4>
 
 <blockquote align="center">
   <em>iPicker</em> 是一个轻量级的地区选择组件，可以简单快速的对 “省市区” 进行选择<br>
-专门针对桌面端的现代高级浏览器，提供了两种版本供开发者根据项目需求自由选择
-  
+专门针对桌面端的现代高级浏览器，无任何第三方依赖完全使用原生 JavaScript 开发
 </blockquote>
 
-<p align="center">
-  <a href="#jquery-plugin">jQuery 插件版</a>&nbsp;&nbsp;|
-  <a href="#vue-browser">&nbsp;Vue 组件版</a>
-</p>
+<h4 align="center">
+  <a href="http://dreamer365.gitee.io/ipicker/" target="_blank">查看在线示例</a>
+</h4>
+<br>
+<p align="center">JSON 数据来源 <a href="https://github.com/dwqs/area-data" target="_blank">area-data</a></p>
 
-<p align="center">数据来源 <a href="https://github.com/dwqs/area-data" target="_blank">area-data</a></p>
-
-<h2 id="jquery-plugin">jQuery 插件版</h2>
-
-#### 引入文件
+## 安装组件
+#### 本地引入
 
 ```html
-<!-- 要求 jquery 1.9.0+ -->
-<script src="jquery.min.js"></script>
 <script src="ipicker.min.js"></script>
 ```
 
-#### 创建容器
+#### cdn 引入
+
 ```html
-<div id="container"></div>
-````
-
-#### 调用插件
-```js
-$( "#container" ).iPicker({
-    data: "area.json",
-    onSelect: function ( value, text, set ) {
-        console.log( value );
-        console.log( text );
-        console.log( set );
-    }
-});
-````
-
-#### jQuery 插件版提供的方法
-
-```javascript
-$( elem ).iPicker( {} );           // 设置组件
-$( elem ).iPicker( "clear" );      // 清空选择的结果
-$( elem ).iPicker( "reset" );      // 重置组件
-$( elem ).iPicker( "destroy" );    // 销毁组件
-$( elem ).iPicker( "enabled" );    // 启用设置了 disabled 的选择框
-$( elem ).iPicker();               // 获取选中结果
+<script src="https://unpkg.com/new-ipicker@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/new-ipicker@latest/dist/iPicker.min.js"></script>
 ```
 
+#### npm 安装
+
+```javascript
+npm i new-ipicker -S
+```
+```javascript
+const iPicker = require( "new-ipicker" );
+```
 <hr/>
-<h2 id="vue-browser">Vue 组件版</h2>
 
-### 安装
-
-```javascript
-npm install vue-ipicker -S
-```
-
-### 使用
-
-```javascript
-// main.js
-import iPicker from "vue-ipicker";
-Vue.use( iPicker );
-```
+## 使用方法
+#### 创建容器后，先获取 json 数据，然后调用 `iPicker` 方法即可：
 
 ```html
-<template>
-    <div id="app">
-        <iPicker :options="options" @onSelect="select"></iPicker>
-    </div>
-</template>
+<div id="target"></div>
 
 <script>
-
-    // 假设 area.json 文件放在了 static 里
-    import AreaJSON from "../static/area.json";
-
-    export default {
-        name: "app",
-        data () {
-            return {
-                options: {
-                    data: AreaJSON
-                }
-            }
-        },
-        methods: {
-            select ( value, text, set ) {
-                console.log( value );
-                console.log( text );
-                console.log( set );
-            }
-        }
-    }
+    
+    // 此处以通过 axios 库获取数据为例
+    axios.get( "area.json" ).then(function ( response ) {
+        iPicker("#target", {
+            data: response.data
+        });
+    })
+    
 </script>
-````
+```
+#### 可以选择 cascader 主题
+```javascript
+axios.get( "area.json" ).then(function ( response ) {
+    iPicker("#target", {
+        data: response.data,
+        type: "cascader"
+    });
+})
+```
+#### 设置默认选中值
+```javascript
+axios.get( "area.json" ).then(function ( response ) {
+    iPicker("#target", {
+        data: response.data,
+        selected: [ "230000", "230100", "230103" ]
+
+        // 也可以是 name 形式
+        // selected: [ "黑龙江省", "哈尔滨市", "南岗区" ]
+    });
+})
+```
+#### 监听选中项的变化
+```javascript
+axios.get( "area.json" ).then(function ( response ) {
+    iPicker("#target", {
+        data: response.data,
+        onSelect: function ( code, name, all ) {
+            
+            // 有三种返回值（均为数组形式）
+            console.log( code );
+            console.log( name );
+            console.log( all );
+        }
+    });
+})
+```
+## 组件方法
+#### iPicker 提供了六个方法：
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0306/123227_4782b14c_5535128.png "iPicker.png")
+
+```javascript
+var picker = iPicker( "#target", { ... } );
+
+// 获取选中结果（前两种等效）
+iPicker.get( picker );
+iPicker.get( picker, "code" );
+iPicker.get( picker, "name" );
+iPicker.get( picker, "all" );
+
+// 清空选中结果
+iPicker.clear( picker );
+
+// 重置（恢复初始状态）
+iPicker.reset( picker );
+
+// 启用（全部）
+iPicker.enabled( picker );
+
+// 启用（指定层级，范围：0-2，仅限 select 主题模式下）
+iPicker.enabled( picker, [ 0, 1 ] );
+
+// 禁用（全部）
+iPicker.disabled( picker );
+
+// 禁用（指定层级，范围：0-2，仅限 select 主题模式下）
+iPicker.disabled( picker, [ 0, 1 ] );
+```
+
 <hr/>
 
-<h2>API 参数</h2>
-
-| 参数           | 说明                                                         | 类型     | 默认值             |
-| -------------- | ------------------------------------------------------------ | -------- | ------------------ |
-| data           | 地区的 json 数据，可传入三种形式的数据：<br>1. 直接传入 json 数据<br>2. 传入 Promise （ 仅限 jQuery 插件版！自动执行 then 方法来得到数据 ）<br>3. json 文件地址（ 仅限 jQuery 插件版！当传入 json 文件的地址时，程序会自动调用 $.getJSON() 请求数据 ）                                         | Object / String   | {}                 |
-| level          | 显示的层级，范围 1-3，对应：省-市-区                         | Number   | 3                  |
-| defautValue    | 默认选中值                                                   | Array    | []                 |
-| disabled       | 禁用指定的选择框，true 表示全部禁用，传入数组可禁用指定层级，如：[ 1,2 ] 表示禁用第 2，3 级选择框               | Boolean / Array    | false                 |
-| width       | 选择框宽度，单位：px                 | Number    | 200                 |
-| maxHeight   | 下拉列表的最大高度，单位：px                 | Number    | 300                 |
-| placeholder    | 选择框占位文字           | Array    | ["省", "市", "区"] |
-| onSelect       | 选中列表中某一项后执行的回调函数，回调参数有三个：<br>1. 所有选中项的 value <br>2. 所有选中项的 text <br>3. 所有选中项的 value 和 text 集合<br><br>以上参数均返回数组形式 | Function | 空函数             |
+## 配置参数
+<table>
+    <tr>
+        <td>参数</td>
+        <td>说明</td>
+        <td>类型</td>
+        <td>默认值</td>
+    </tr>
+    <tr>
+        <td>theme</td>
+        <td>主题模式，可选值：select, cascader</td>
+        <td>String</td>
+        <td>select</td>
+    </tr>
+    <tr>
+        <td>data</td>
+        <td>地区的 json 数据（必填项）</td>
+        <td>Object</td>
+        <td>{}</td>
+    </tr>
+    <tr>
+        <td>level</td>
+        <td>数据的展示层级，范围：0-2（代表 1-3 级，省-市-区）</td>
+        <td>Number</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>width</td>
+        <td>展示框的宽度，单位：px，cascader 模式下建议适当的增加</td>
+        <td>Number</td>
+        <td>200</td>
+    </tr>
+    <tr>
+        <td>maxHeight</td>
+        <td>数据列表的最大高度，单位：px</td>
+        <td>Number</td>
+        <td>300</td>
+    </tr>
+    <tr>
+        <td>disabled</td>
+        <td>默认禁用的展示框，设置为 true 时将禁用所有展示框；<br>在 select 模式下可传入数组形式，设置禁用指定层级的展示框，范围：0-2（代表 1-3 级，省-市-区）</td>
+        <td>Boolean / Array</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>selected</td>
+        <td>默认选中项，可以是 name 或 code 形式</td>
+        <td>Array</td>
+        <td>[]</td>
+    </tr>
+    <tr>
+        <td>placeholder</td>
+        <td>展示框的占位文字，select 模式下是数组形式，cascader 模式下是字符串形式</td>
+        <td>String / Array</td>
+        <td>[ "省", "市", "区" ]</td>
+    </tr>
+    <tr>
+        <td>onSelect</td>
+        <td>选择项改变时执行的回调函数，有 3 个回调参数：<br>1. code 数组<br>2. name 数组<br>3. code 与 name 的数组集合</td>
+        <td>Function</td>
+        <td>空函数</td>
+    </tr>
+</table>
 
 <hr/>
 
-<h2>开源协议</h2>
-<p><a href="https://github.com/Dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
+## 开源协议
+<p><a href="https://gitee.com/dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
 
 <hr/>
 
-<h2>浏览器支持</h2>
+## 浏览器支持
 
 | Chrome | Firefox | Opera | Edge | Safari | IE  |
 | ---    | ---     | ---   | ---  | ---    | --- |
