@@ -24,8 +24,8 @@
 #### cdn 引入
 
 ```html
-<script src="https://unpkg.com/new-ipicker@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/new-ipicker@latest/dist/iPicker.min.js"></script>
+<script src="https://unpkg.com/new-ipicker"></script>
+<script src="https://cdn.jsdelivr.net/npm/new-ipicker"></script>
 ```
 
 #### npm 安装
@@ -46,29 +46,43 @@ const iPicker = require( "new-ipicker" );
 
 <script>
     
-    // 此处以通过 axios 库获取数据为例
-    axios.get( "area.json" ).then(function ( response ) {
+    // 此处以通过 jquery 库获取数据为例
+    $.getJSON( "area.json" ).then(function ( response ) {
         iPicker("#target", {
-            data: response.data
+            data: response
         });
     })
     
 </script>
 ```
+#### 也可以传入一个 Promise 对象或 jquery 的 Deferred 对象，iPicker 会自动调用 then 方法获取数据：
+
+```html
+<div id="target"></div>
+
+<script>
+    
+    // 此处以通过 jquery 库获取数据为例
+    iPicker("#target", {
+        data: $.getJSON( "area.json" )
+    });
+    
+</script>
+```
 #### 可以选择 cascader 主题
 ```javascript
-axios.get( "area.json" ).then(function ( response ) {
+$.getJSON( "area.json" ).then(function ( response ) {
     iPicker("#target", {
-        data: response.data,
+        data: response,
         type: "cascader"
     });
 })
 ```
 #### 设置默认选中值
 ```javascript
-axios.get( "area.json" ).then(function ( response ) {
+$.getJSON( "area.json" ).then(function ( response ) {
     iPicker("#target", {
-        data: response.data,
+        data: response,
         selected: [ "230000", "230100", "230103" ]
 
         // 也可以是 name 形式
@@ -78,9 +92,9 @@ axios.get( "area.json" ).then(function ( response ) {
 ```
 #### 监听选中项的变化
 ```javascript
-axios.get( "area.json" ).then(function ( response ) {
+$.getJSON( "area.json" ).then(function ( response ) {
     iPicker("#target", {
-        data: response.data,
+        data: response,
         onSelect: function ( code, name, all ) {
             
             // 有三种返回值（均为数组形式）
@@ -140,7 +154,7 @@ iPicker.disabled( picker, [ 0, 1 ] );
     </tr>
     <tr>
         <td>data</td>
-        <td>地区的 json 数据（必填项）</td>
+        <td>地区的 json 数据（必填项），可直接传入数据或传入 Promise</td>
         <td>Object</td>
         <td>{}</td>
     </tr>
@@ -161,6 +175,12 @@ iPicker.disabled( picker, [ 0, 1 ] );
         <td>数据列表的最大高度，单位：px</td>
         <td>Number</td>
         <td>300</td>
+    </tr>
+    <tr>
+        <td>activeColor</td>
+        <td>设置选中项的高亮颜色</td>
+        <td>String</td>
+        <td>#00b8ff</td>
     </tr>
     <tr>
         <td>disabled</td>
