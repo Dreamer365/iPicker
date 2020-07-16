@@ -107,6 +107,7 @@ $.getJSON( "area.json" ).then(function ( response ) {
 ```
 ## 组件方法
 #### iPicker 提供了六个方法：
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0306/123227_4782b14c_5535128.png)
 
 ```javascript
 var picker = iPicker( "#target", { ... } );
