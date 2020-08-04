@@ -12,7 +12,6 @@
   <a href="http://dreamer365.gitee.io/ipicker/" target="_blank">查看在线示例</a>
 </h4>
 <br>
-<p align="center">JSON 数据来源 <a href="https://github.com/dwqs/area-data" target="_blank">area-data</a></p>
 
 ## 安装组件
 #### 本地引入
