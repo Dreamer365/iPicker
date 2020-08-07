@@ -8,7 +8,7 @@
 专门针对桌面端的现代高级浏览器，无任何第三方依赖完全使用原生 JavaScript 开发
 </blockquote>
 
-<h4 align="center">注：当前所用的 json 地区数据完全来自网络搜索，并非最新数据，如果无法满足需求。还请自行搜索最新数据。</h4>
+<h4 align="center">注：当前所用的 json 地区数据完全来自网络搜索，并非最新数据，如果无法满足需求，还请自行搜索最新数据。</h4>
 
 <h4 align="center">
   <a href="http://dreamer365.gitee.io/ipicker/" target="_blank">查看在线示例</a>
