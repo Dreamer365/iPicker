@@ -481,7 +481,7 @@ iPicker.destroy( picker );
 <hr/>
 
 <h2 id="l">更新日志</h2>
-<p><a href="https://github.com/Dreamer365/iPicker/blob/master/Changelog.md">MIT License</a></p>
+<p><a href="https://github.com/Dreamer365/iPicker/blob/master/Changelog.md">更新日志</a></p>
 
 <hr/>
 
