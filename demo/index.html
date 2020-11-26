@@ -1,276 +1,235 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="renderer" content="webkit">
-        <title>iPicker 地区选择</title>
-        <style>
-           *{margin:0;padding:0;outline:0;box-sizing:border-box}body{background:#1f1f1f}.container{margin:0 auto;width:1200px}header{color:#fff;font-weight:400;font-size:46px;margin-top:30px;cursor:default}header span{font-size:15px}header div{float:right;margin-top:20px}header a{display:block;float:right;width:70px;height:28px;line-height:26px;background:#fff;color:#000;border:transparent solid 1px;text-align:center;border-radius:14px;font-size:14px;font-weight:700;text-decoration:none;transition:.2s}header a:first-child{margin-left:10px}header a:hover{background:0 0;color:#fff;border-color:#fff}.wrapper{background:#fff;border-radius:6px;padding:20px;margin:30px 0;display:flex}.wrapper .box{width:50%}.wrapper .box:first-of-type{border-right:#dfdfdf solid 1px}p.title{font-size:20px;font-weight:700;margin-bottom:15px}p.title+div{height:34px}.title>span{font-size:14px}.wrapper .box:last-of-type>*{margin-left:15px}.part{height:260px;margin-bottom:30px}.box:first-of-type .pre{padding-right:20px}pre{color:#09f;display:block;overflow:auto;width:100%;height:180px;font-size:13px;font-family:Consolas;margin-top:15px}pre i{font-style:normal}.has-button b{display:inline-block;padding:4px 12px 5px 12px;font-size:12px;background:#fff;color:#09f;cursor:pointer;border-radius:4px;margin:10px 8px 0 0;border:#09f solid 1px;transition:.2s;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.has-button b:hover{background:#09f;color:#fff}
-        </style>
+        <meta charset="UTF-8">
+        <title>iPicker</title>
+        <link rel="stylesheet" href="static/css/style.css">
     </head>
     <body>
-        
-        <div class="container">
+
+        <div id="container">
             <header>
                 <b>iPicker</b>
-                <span>地区选择组件</span>
+                <span>v3.0.0</span>
                 <div>
                     <a href="https://gitee.com/dreamer365/iPicker" target="_blank">码云</a>
                     <a href="https://github.com/Dreamer365/iPicker" target="_blank">Github</a>
                 </div>
             </header>
             <div class="wrapper">
-                <div class="box">
+                <div class="box" id="select">
+
+                    <!-- 基本用法 -->
                     <div class="part">
-                        <p class="title">基本用法</p>
+                        <p class="title"><span>基本用法</span></p>
                         <div id="demo-a-1"></div>
-                        <div class="pre"><pre></pre></div>
-                    </div> 
+                        <div class="pre" id="pre-demo-a-1"></div>
+                    </div>
+
+                    <!-- 箭头样式 -->
                     <div class="part">
-                        <p class="title">自定义层级</p>
+                        <p class="title"><span>箭头样式</span></p>
                         <div id="demo-a-2"></div>
-                        <div class="pre"><pre></pre></div>
-                    </div>
+                        <div class="pre" id="pre-demo-a-2"></div>
+                    </div> 
+
+                    <!-- 设置默认值 -->
                     <div class="part">
-                        <p class="title">设置默认值</p>
+                        <p class="title"><span>设置默认值</span></p>
                         <div id="demo-a-3"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-a-3"></div>
                     </div>
-                    <div class="part" style="height:290px;">
-                        <p class="title has-button">默认禁用<br><b id="enabled-a-4">启用</b><b id="disabled-a-4">禁用</b></p>
+
+                    <!-- 自定义层级 -->
+                    <div class="part">
+                        <p class="title"><span>自定义层级</span></p>
                         <div id="demo-a-4"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-a-4"></div>
                     </div>
+
+                    <!-- 禁用与启用 -->
                     <div class="part">
-                        <p class="title">自定义占位文字</p>
+                        <p class="title">
+                            <span>禁用与启用</span>
+                            <button class="btn" id="btn-enabled">启用</button>
+                            <button class="btn" id="btn-disabled">禁用</button>
+                        </p>
                         <div id="demo-a-5"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-a-5"></div>
+                    </div> 
+
+                    <!-- 设置激活颜色 -->
+                    <div class="part">
+                        <p class="title"><span>设置激活颜色</span></p>
+                        <div id="demo-a-6"></div>
+                        <div class="pre" id="pre-demo-a-6"></div>
+                    </div>
+
+                    <!-- 严格模式 -->
+                    <div class="part">
+                        <p class="title"><span>严格模式</span><i>（会自动选择下一级数据的第一个选项）</i></p>
+                        <div id="demo-a-7"></div>
+                        <div class="pre" id="pre-demo-a-7"></div>
+                    </div>
+
+                    <!-- 自定义占位文字 -->
+                    <div class="part">
+                        <p class="title"><span>自定义占位文字</span></p>
+                        <div id="demo-a-8"></div>
+                        <div class="pre" id="pre-demo-a-8"></div>
+                    </div> 
+
+                    <!-- 限制列表高度 -->
+                    <div class="part">
+                        <p class="title"><span>限制列表高度</span></p>
+                        <div id="demo-a-9"></div>
+                        <div class="pre" id="pre-demo-a-9"></div>
+                    </div>
+
+                    <!-- 手动获取值 -->
+                    <div class="part">
+                        <p class="title">
+                            <span>手动获取值</span>
+                            <button class="btn" id="get-value">获取值</button>
+                        </p>
+                        <div id="demo-a-10"></div>
+                        <div class="pre" id="pre-demo-a-10"></div>
+                    </div>
+
+                    <!-- 手动清空 -->
+                    <div class="part">
+                        <p class="title">
+                            <span>手动清空</span>
+                            <button class="btn" id="clear">清空</button>
+                        </p>
+                        <div id="demo-a-11"></div>
+                        <div class="pre" id="pre-demo-a-11"></div>
+                    </div> 
+
+                    <!-- 手动重置 -->
+                    <div class="part">
+                        <p class="title">
+                            <span>手动重置</span>
+                            <button class="btn" id="reset">重置</button>
+                        </p>
+                        <div id="demo-a-12"></div>
+                        <div class="pre" id="pre-demo-a-12"></div>
+                    </div>
+
+                    <!-- 圆角展示框 -->
+                    <div class="part">
+                        <p class="title"><span>圆角展示框</span></p>
+                        <div id="demo-a-13"></div>
+                        <div class="pre" id="pre-demo-a-13"></div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="box" id="cascader">
+                    <div class="part">
+                        <p class="title"><span>基本用法</span></p>
+                        <div id="demo-b-1"></div>
+                        <div class="pre" id="pre-demo-b-1"><pre></pre></div>
                     </div>
                     <div class="part">
-                        <p class="title">设置高亮颜色</p>
-                        <div id="demo-a-6"></div>
-                        <div class="pre"><pre></pre></div>
+                        <p class="title"><span>箭头样式</span></p>
+                        <div id="demo-b-2"></div>
+                        <div class="pre" id="pre-demo-b-2"><pre></pre></div>
                     </div> 
                     <div class="part">
-                        <p class="title">限制列表高度</p>
-                        <div id="demo-a-7"></div>
-                        <div class="pre"><pre></pre></div>
-                    </div>  
-                </div>
-                <div class="box">
-                    <div class="part">
-                        <p class="title">基本用法</p>
-                        <div id="demo-b-1"></div>
-                        <div class="pre"><pre></pre></div>
-                    </div>
-                    <div class="part">
-                        <p class="title">自定义层级</p>
-                        <div id="demo-b-2"></div>
-                        <div class="pre"><pre></pre></div>
-                    </div>
-                    <div class="part">
-                        <p class="title">设置默认值</p>
+                        <p class="title"><span>设置默认值</span></p>
                         <div id="demo-b-3"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-b-3"><pre></pre></div>
                     </div>
-                    <div class="part" style="height:290px;">
-                        <p class="title has-button">默认禁用<br><b id="enabled-b-4">启用</b><b id="disabled-b-4">禁用</b></p>
+                    <div class="part">
+                        <p class="title"><span>自定义层级</span></p>
                         <div id="demo-b-4"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-b-4"><pre></pre></div>
                     </div>
                     <div class="part">
-                        <p class="title">自定义占位文字</p>
+                        <p class="title">
+                            <span>禁用与启用</span>
+                            <button class="btn" id="btn-enabled-cascader">启用</button>
+                            <button class="btn" id="btn-disabled-cascader">禁用</button>
+                        </p>
                         <div id="demo-b-5"></div>
-                        <div class="pre"><pre></pre></div>
-                    </div>
+                        <div class="pre" id="pre-demo-b-5"><pre></pre></div>
+                    </div> 
                     <div class="part">
-                        <p class="title">设置高亮颜色</p>
+                        <p class="title"><span>设置激活颜色</span></p>
                         <div id="demo-b-6"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-b-6"><pre></pre></div>
                     </div>
                     <div class="part">
-                        <p class="title">限制列表高度</p>
+                        <p class="title">
+                            <span>严格模式</span>
+                            <i>（列表收起时，如果所选结果的层级与 level 属性不等，则选择无效）</i>
+                        </p>
                         <div id="demo-b-7"></div>
-                        <div class="pre"><pre></pre></div>
+                        <div class="pre" id="pre-demo-b-7"><pre></pre></div>
+                    </div>
+                    <div class="part">
+                        <p class="title"><span>自定义占位文字</span></p>
+                        <div id="demo-b-8"></div>
+                        <div class="pre" id="pre-demo-b-8"><pre></pre></div>
+                    </div> 
+                    <div class="part">
+                        <p class="title"><span>限制列表高度</span></p>
+                        <div id="demo-b-9"></div>
+                        <div class="pre" id="pre-demo-b-9"><pre></pre></div>
+                    </div>
+                    <div class="part">
+                        <p class="title">
+                            <span>手动获取值</span>
+                            <button class="btn" id="get-value-cascader">获取值</button>
+                        </p>
+                        <div id="demo-b-10"></div>
+                        <div class="pre" id="pre-demo-b-10"><pre></pre></div>
+                    </div>
+                    <div class="part">
+                        <p class="title">
+                            <span>清空</span>
+                            <button class="btn" id="clear-cascader">清空</button>
+                        </p>
+                        <div id="demo-b-11"></div>
+                        <div class="pre" id="pre-demo-b-11"><pre></pre></div>
+                    </div> 
+                    <div class="part">
+                        <p class="title">
+                            <span>重置</span>
+                            <button class="btn" id="reset-cascader">重置</button>
+                        </p>
+                        <div id="demo-b-12"></div>
+                        <div class="pre" id="pre-demo-b-12"><pre></pre></div>
+                    </div>
+
+                    <!-- 圆角展示框 -->
+                    <div class="part">
+                        <p class="title"><span>圆角展示框</span></p>
+                        <div id="demo-b-13"></div>
+                        <div class="pre" id="pre-demo-b-13"><pre></pre></div>
+                    </div>
+                    <div class="part">
+                        <p class="title"><span>只显示结果的最后一级</span></p>
+                        <div id="demo-b-14"></div>
+                        <div class="pre" id="pre-demo-b-14"><pre></pre></div>
+                    </div>
+                    <div class="part">
+                        <p class="title"><span>自定义分隔符</span></p>
+                        <div id="demo-b-15"></div>
+                        <div class="pre" id="pre-demo-b-15"><pre></pre></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="js/es6-promise.auto.min.js"></script>
-        <script src="js/axios.min.js"></script>
-        <script src="js/iPicker.min.js"></script>
-        <script>
-            function json () {
-                return new Promise(function ( resolve, reject ) {
-                    axios.get( "json/area.json" ).then(function ( response ) {
-                        if ( typeof response.data === "object" ) {
-                            resolve( response.data );
-                        } else {
-                            reject();
-                        }
-                    }).catch(function ( error ) {
-                        reject( error );
-                    })
-                })
-            }
-            function log ( el, t, v, set ) {
-                var name = "[ " + t.join( ", " ) + " ]";
-                var code = "[ " + v.join( ", " ) + " ]";
-                el.innerHTML = '<i class="name">' + name + '</i>' + "<br><br>" + '<i class="code">' + code + '</i>' + "<br><br>" + JSON.stringify( set, null, 2 );
-            }
-            function pre ( el ) {
-                return document.querySelector( el ).nextElementSibling.querySelector( "pre" );
-            }
-            json().then(function ( data ) {
-                iPicker("#demo-a-1", {
-                    theme: "select",
-                    data: data,
-                    width: 180,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-1" ), t, v, set );
-                    }
-                });
-                iPicker("#demo-a-2", {
-                    theme: "select",
-                    data: data,
-                    level: 1,
-                    width: 180,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-2" ), t, v, set );
-                    }
-                });
-                var a3 = iPicker("#demo-a-3", {
-                    theme: "select",
-                    data: data,
-                    selected: [ "230000", "230100", "230103" ],
-                    width: 180,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-2" ), t, v, set );
-                    }
-                });
-                setTimeout(function () {
-                    log( pre( "#demo-a-3" ), iPicker.get( a3, "code" ), iPicker.get( a3, "name" ), iPicker.get( a3, "all" ) );
-                }, 13)
-                var a4 = iPicker("#demo-a-4", {
-                    theme: "select",
-                    data: data,
-                    disabled: true,
-                    width: 180,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-4" ), t, v, set );
-                    }
-                });
-                document.querySelector( "#enabled-a-4" ).onclick = function () {
-                    iPicker.enabled( a4 );
-                }
-                document.querySelector( "#disabled-a-4" ).onclick = function () {
-                    iPicker.disabled( a4 );
-                }
-                iPicker("#demo-a-5", {
-                    theme: "select",
-                    data: data,
-                    placeholder: [ "选择省份", "选择市", "选择区" ],
-                    width: 180,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-5" ), t, v, set );
-                    }
-                });
-                iPicker("#demo-a-6", {
-                    theme: "select",
-                    data: data,
-                    width: 180,
-                    activeColor: "#c434d5",
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-6" ), t, v, set );
-                    }
-                });
-                iPicker("#demo-a-7", {
-                    theme: "select",
-                    data: data,
-                    maxHeight: 200,
-                    width: 180,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-a-7" ), t, v, set );
-                    }
-                });
-                        
-                // cascader
-                iPicker("#demo-b-1", {
-                    theme: "cascader",
-                    data: data,
-                    width: 400,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-1" ), t, v, set );
-                    }
-                });
-                iPicker("#demo-b-2", {
-                    theme: "cascader",
-                    data: data,
-                    level: 1,
-                    width: 400,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-2" ), t, v, set );
-                    }
-                });
-                var b3 = iPicker("#demo-b-3", {
-                    theme: "cascader",
-                    data: data,
-                    selected: [ "150000", "150600", "150623" ],
-                    width: 400,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-2" ), t, v, set );
-                    }
-                });
-                setTimeout(function () {
-                    log( pre( "#demo-b-3" ), iPicker.get( b3, "code" ), iPicker.get( b3, "name" ), iPicker.get( b3, "all" ) );
-                }, 13)
-                var b4 = iPicker("#demo-b-4", {
-                    theme: "cascader",
-                    data: data,
-                    disabled: true,
-                    width: 400,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-4" ), t, v, set );
-                    }
-                });
-                document.querySelector( "#enabled-b-4" ).onclick = function () {
-                    iPicker.enabled( b4 );
-                }
-                document.querySelector( "#disabled-b-4" ).onclick = function () {
-                    iPicker.disabled( b4 );
-                }
-                iPicker("#demo-b-5", {
-                    theme: "cascader",
-                    data: data,
-                    placeholder: "请选择省市区",
-                    width: 400,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-5" ), t, v, set );
-                    }
-                });
-                iPicker("#demo-b-6", {
-                    theme: "cascader",
-                    data: data,
-                    placeholder: "请选择省市区",
-                    width: 400,
-                    activeColor: "#c434d5",
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-6" ), t, v, set );
-                    }
-                });
-                iPicker("#demo-b-7", {
-                    theme: "cascader",
-                    data: data,
-                    maxHeight: 200,
-                    width: 400,
-                    onSelect: function ( t, v, set ) {
-                        log( pre( "#demo-b-7" ), t, v, set );
-                    }
-                });
-            })
-        </script>
+        <script src="static/js/es6-promise.min.js"></script>
+        <script src="static/js/iPicker.min.js"></script>
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/js/core.js"></script>
 
     </body>
 </html>
