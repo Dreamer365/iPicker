@@ -1,5 +1,5 @@
 /*!
- * iPicker v2.0.0
+ * iPicker v2.1.0
  * Copyright (C) 2020, ZG
  * Released under the MIT license.
  */
@@ -84,13 +84,6 @@
         return [].slice.call( ( context || document ).querySelectorAll( selector ) );
     }
 
-    // 添加 style
-    var $style = $( "#iPicker-style" );
-    if ( $style ) {
-        $head.removeChild( $style );
-    }
-    $head.insertAdjacentHTML( "beforebegin", '<style id="iPicker-style">.iPicker-container,.iPicker-container *{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent}.iPicker-container *{margin:0;padding:0}.iPicker-container{position:relative;float:left;width:200px;height:34px;font-size:14px;cursor:pointer}.iPicker-container:not(:last-child){margin-right:10px}.iPicker-result{overflow:hidden;height:34px;border:#dfdfdf solid 1px;border-radius:4px;background:#fff;color:#000;white-space:nowrap;transition:border-color .2s}.iPicker-result input{pointer-events:none;width:100%;cursor:pointer;display:block;height:32px;background-color:#fff;border:none;outline:0;padding:0 30px 0 12px}.iPicker-result-active:not(.iPicker-disabled),.iPicker-result:not(.iPicker-disabled):hover{border:#00b8ff solid 1px}.iPicker-result i{position:absolute;top:0;right:0;display:block;width:30px;height:34px}.iPicker-result i::before{position:absolute;top:0;right:2px;display:block;width:28px;height:100%;background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTc2OTk1MjQ3Njc4IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjI2NTAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUzNS40NjY2NjcgODEyLjhsNDUwLjEzMzMzMy01NjMuMmMxNC45MzMzMzMtMTkuMiAyLjEzMzMzMy00OS4wNjY2NjctMjMuNDY2NjY3LTQ5LjA2NjY2N0g2MS44NjY2NjdjLTI1LjYgMC0zOC40IDI5Ljg2NjY2Ny0yMy40NjY2NjcgNDkuMDY2NjY3bDQ1MC4xMzMzMzMgNTYzLjJjMTIuOCAxNC45MzMzMzMgMzQuMTMzMzMzIDE0LjkzMzMzMyA0Ni45MzMzMzQgMHoiIHAtaWQ9IjI2NTEiIGZpbGw9IiMwMDAwMDAiPjwvcGF0aD48L3N2Zz4=) center no-repeat;content:"";opacity:.5;transition:transform .3s;transform:scale(.55)}.iPicker-result-active i::before{transform:scale(.55) rotate(180deg)}.iPicker-disabled{cursor:not-allowed;background:#e7e7e7;color:#898989}.iPicker-disabled input{background:#e7e7e7;color:#898989}.iPicker-result.iPicker-disabled i{opacity:.5}.iPicker-list{position:relative;z-index:10;display:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:8px 0;background:#fff;box-shadow:rgba(0,0,0,.1) 0 2px 6px;transform-origin:center top;animation-timing-function:ease-in-out;animation-duration:.3s;animation-fill-mode:forwards}.iPicker-container:not(.iPicker-cascader) .iPicker-list{max-height:300px}.iPicker-cascader .iPicker-list{overflow-y:hidden;padding:0}.iPicker-list li,.iPicker-list ul{width:100%;display:block;margin:0;padding:0}.iPicker-list ul{float:left}.iPicker-cascader ul{width:200px;overflow-y:auto;overscroll-behavior:contain;padding:8px 0}.iPicker-cascader ul:not(:last-child){border-right:#e6e6e6 solid 1px}.iPicker-list li{position:relative;display:block;padding:6px 12px;list-style:none;transition:.15s;overflow:hidden;clear:both;word-break:break-all}.iPicker-list li *{pointer-events:none}.iPicker-list li span{display:block;float:left}.iPicker-list li i{display:block;position:absolute;top:50%;right:10px;width:8px;height:8px;margin-top:-4px;border-top:#666 solid 1px;border-right:#bbb solid 1px;transform:scale(.8) rotate(45deg)}.iPicker-list li.iPicker-list-active,.iPicker-list li:hover{background:#f5f5f5;color:#00b8ff}.iPicker-list-active{cursor:default}.iPicker-list.iPicker-list-hide,.iPicker-list.iPicker-list-show{display:block}.iPicker-list.iPicker-list-show{animation-name:iPickerShow}.iPicker-list.iPicker-list-hide{animation-name:iPickerHide}@keyframes iPickerShow{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:scaleY(1)}}@keyframes iPickerHide{from{opacity:1;transform:scaleY(1)}to{opacity:0;transform:scaleY(0)}}</style>' );
-
     // 默认配置
     var defaults = {
         theme: "select",
@@ -100,6 +93,7 @@
         maxHeight: 300,
         disabled: false,
         selected: [],
+        activeColor: "#00b8ff",
         placeholder: [ "省", "市", "区" ],
         onSelect: function () {}
     };
@@ -121,8 +115,8 @@
             !target || 
             !options || 
             !$target.length || 
-            !_.isObj( options ) || 
-            !_.isObj( options.data ) 
+            !_.isObj( options ) ||
+            typeof options.data !== "object"
         ) {
             return;
         }
@@ -171,8 +165,23 @@
             })
         }
 
+        // 添加 style
+        var $style = $( "#iPicker-style" );
+        if ( $style ) {
+            $head.removeChild( $style );
+        }
+        $head.insertAdjacentHTML( "afterbegin", '<style id="iPicker-style">.iPicker-container,.iPicker-container *{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent}.iPicker-container *{margin:0;padding:0}.iPicker-container{position:relative;float:left;width:200px;height:34px;font-size:14px;cursor:pointer}.iPicker-container:not(:last-child){margin-right:10px}.iPicker-result{overflow:hidden;height:34px;border:#dfdfdf solid 1px;border-radius:4px;background:#fff;color:#000;white-space:nowrap;transition:border-color .2s}.iPicker-result input{pointer-events:none;width:100%;cursor:pointer;display:block;height:32px;background-color:#fff;border:none;outline:0;padding:0 30px 0 12px}.iPicker-result-active:not(.iPicker-disabled),.iPicker-result:not(.iPicker-disabled):hover{border:' + defaults.activeColor + ' solid 1px}.iPicker-result i{position:absolute;top:0;right:0;display:block;width:30px;height:34px}.iPicker-result i::before{position:absolute;top:0;right:2px;display:block;width:28px;height:100%;background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTc2OTk1MjQ3Njc4IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjI2NTAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUzNS40NjY2NjcgODEyLjhsNDUwLjEzMzMzMy01NjMuMmMxNC45MzMzMzMtMTkuMiAyLjEzMzMzMy00OS4wNjY2NjctMjMuNDY2NjY3LTQ5LjA2NjY2N0g2MS44NjY2NjdjLTI1LjYgMC0zOC40IDI5Ljg2NjY2Ny0yMy40NjY2NjcgNDkuMDY2NjY3bDQ1MC4xMzMzMzMgNTYzLjJjMTIuOCAxNC45MzMzMzMgMzQuMTMzMzMzIDE0LjkzMzMzMyA0Ni45MzMzMzQgMHoiIHAtaWQ9IjI2NTEiIGZpbGw9IiMwMDAwMDAiPjwvcGF0aD48L3N2Zz4=) center no-repeat;content:"";opacity:.5;transition:transform .3s;transform:scale(.55)}.iPicker-result-active i::before{transform:scale(.55) rotate(180deg)}.iPicker-disabled{cursor:not-allowed;background:#e7e7e7;color:#898989}.iPicker-disabled input{background:#e7e7e7;color:#898989}.iPicker-result.iPicker-disabled i{opacity:.5}.iPicker-list{position:relative;z-index:10;display:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:8px 0;background:#fff;box-shadow:rgba(0,0,0,.1) 0 2px 6px;transform-origin:center top;animation-timing-function:ease-in-out;animation-duration:.3s;animation-fill-mode:forwards}.iPicker-container:not(.iPicker-cascader) .iPicker-list{max-height:300px}.iPicker-cascader .iPicker-list{overflow-y:hidden;padding:0}.iPicker-list li,.iPicker-list ul{width:100%;display:block;margin:0;padding:0}.iPicker-list ul{float:left}.iPicker-cascader ul{width:200px;overflow-y:auto;overscroll-behavior:contain;padding:8px 0}.iPicker-cascader ul:not(:last-child){border-right:#e6e6e6 solid 1px}.iPicker-list li{position:relative;display:block;padding:6px 12px;list-style:none;transition:.15s;overflow:hidden;clear:both;word-break:break-all}.iPicker-list li *{pointer-events:none}.iPicker-list li span{display:block;float:left}.iPicker-list li i{display:block;position:absolute;top:50%;right:10px;width:8px;height:8px;margin-top:-4px;border-top:#666 solid 1px;border-right:#bbb solid 1px;transform:scale(.8) rotate(45deg)}.iPicker-list li.iPicker-list-active,.iPicker-list li:hover{background:#f5f5f5;color:' + defaults.activeColor + '}.iPicker-list-active{cursor:default}.iPicker-list.iPicker-list-hide,.iPicker-list.iPicker-list-show{display:block}.iPicker-list.iPicker-list-show{animation-name:iPickerShow}.iPicker-list.iPicker-list-hide{animation-name:iPickerHide}@keyframes iPickerShow{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:scaleY(1)}}@keyframes iPickerHide{from{opacity:1;transform:scaleY(1)}to{opacity:0;transform:scaleY(0)}}</style>' );
+
         // onSelect 事件可执行的标记
         var onSelectFlag = true;
+
+        var targetID = _.random();
+
+        // 如果自定义了 activeColor
+        // 动态添加对应的 <style>
+        if ( opt.activeColor !== defaults.activeColor ) {
+            $( "style", $head ).insertAdjacentHTML( "afterend", '<style id="iPicker-style-' + targetID + '" class="iPicker-style-custom">.iPicker-container[data-id-' + targetID + '] .iPicker-result-active:not(.iPicker-disabled),.iPicker-container[data-id-' + targetID + '] .iPicker-result:not(.iPicker-disabled):hover{border-color:' + opt.activeColor + '}.iPicker-container[data-id-' + targetID + '] .iPicker-list li.iPicker-list-active,.iPicker-container[data-id-' + targetID + '] .iPicker-list li:hover{color:' + opt.activeColor + '}</style>' );
+        }
 
         $target.forEach(function ( $el ) {
 
@@ -187,9 +196,15 @@
                 $input = $$( "input", $el ),
                 $list = $$( ".iPicker-list", $el );
 
-            // 添加索引标记
             $container.forEach(function ( container, index ) {
+
+                // 添加索引标记
                 container.dataset.index = index;
+
+                // 如果自定义了 activeColor 则需要添加唯一标识
+                if ( opt.activeColor !== defaults.activeColor ) {
+                    container.setAttribute( "data-id-" + targetID, "" );
+                }
             })
 
             // cascader 主题添加类
@@ -461,26 +476,49 @@
             }
 
             // 添加数据
-            function addData ( code ) {
-                var data = opt.data;
+            var cacheData = null;
+            function getData ( callback ) {
+                if ( cacheData ) {
+                    callback();
+                } else {
+                    if ( _.isFunc( opt.data.then ) ) {
+                        opt.data.then(function ( response ) {
+                            cacheData = response;
+                            callback( cacheData );
+                        })
+                    } else {
+                        cacheData = opt.data;
+                        callback( cacheData );
+                    }
+                }
+            }
+            function addData ( code, callback ) {
                 var list = "";
-                if ( data ) {
-                    data = typeof data === "string" ? JSON.parse( data ) : data;
-                    if ( data[ code ] ) {
-                        for ( var key in data[ code ] ) {
+                if ( cacheData ) {
+                    return buildList();
+                } else {
+                    getData(function ( json ) {
+                        callback && callback( buildList() );
+                    })
+                }
+                function buildList () {
+                    if ( cacheData[ code ] ) {
+                        for ( var key in cacheData[ code ] ) {
                             list += 
-                                '<li data-code="' + key + '" data-name="' + data[ code ][ key ] + '">' +
-                                    '<span>' + data[ code ][ key ] + '</span>' + 
+                                '<li data-code="' + key + '" data-name="' + cacheData[ code ][ key ] + '">' +
+                                    '<span>' + cacheData[ code ][ key ] + '</span>' + 
                                     ( opt.theme === "cascader" ? '<i></i>' : '' ) +
                                 '</li>';
                         }
                     }
+                    return list;
                 }
-                return list;
             }
 
             // 自动向第一级列表添加数据
-            $( "ul", $list[ 0 ] ).innerHTML = addData( "86" );
+            addData("86", function ( list ) {
+                $( "ul", $list[ 0 ] ).innerHTML = list;
+            })
             if ( cascaderTheme && opt.level === 0 ) {
                 $$( "i", $list[ 0 ] ).forEach(function ( i ) {
                     i.parentNode.removeChild( i );
@@ -488,26 +526,28 @@
             }
 
             // 默认选中
-            if ( Array.isArray( opt.selected ) && opt.selected.length ) {
-                var timer = null;
-                function selectedTrigger () {
-                    (function trigger ( i ) {
-                        window.clearTimeout( timer );
-                        onSelectFlag = false;
-                        if ( i !== opt.selected.length ) {
-                            var li = '[data-' + ( opt.selected[ i ].match( /\d/ ) ? "code" : "name" ) + '="' + opt.selected[ i ] + '"]';
-                            $( li, $el ).click();
-                            i++;
-                            onSelectFlag = true;
-                            window.setTimeout( trigger, 0, i );
-                        } else {
-                            onSelectFlag = true;
-                        }
-                    })( 0 );
+            getData(function () {
+                if ( Array.isArray( opt.selected ) && opt.selected.length ) {
+                    var timer = null;
+                    function selectedTrigger () {
+                        (function trigger ( i ) {
+                            window.clearTimeout( timer );
+                            onSelectFlag = false;
+                            if ( i !== opt.selected.length ) {
+                                var li = '[data-' + ( opt.selected[ i ].match( /\d/ ) ? "code" : "name" ) + '="' + opt.selected[ i ] + '"]';
+                                $( li, $el ).click();
+                                i++;
+                                onSelectFlag = true;
+                                window.setTimeout( trigger, 0, i );
+                            } else {
+                                onSelectFlag = true;
+                            }
+                        })( 0 );
+                    }
+                    selectedTrigger();
+                    $el.cacheTrigger = selectedTrigger;
                 }
-                selectedTrigger();
-                $el.cacheTrigger = selectedTrigger;
-            }
+            })
 
             // 点击空白处隐藏列表
             document.addEventListener("click", function ( event ) {
@@ -636,6 +676,11 @@
             delete el.cacheTrigger;
         })
         delete cachePicker[ id ];
+        if ( !$( ".iPicker-container" ) ) {
+            $$( "#iPicker-style, .iPicker-style-custom" ).forEach(function ( style ) {
+                $head.removeChild( style );
+            })
+        }
     }
 
     // 启用组件

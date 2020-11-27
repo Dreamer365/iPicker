@@ -14,7 +14,7 @@
 </h4>
 
 ## 最新版本
-v3.0.0
+<a href="https://github.com/Dreamer365/iPicker/tree/master/dist/v3.0.0" target="_blank">v3.0.0</a>
 
 <hr/>
 
@@ -280,6 +280,7 @@ iPicker("#target", {
 <h2 id="i">组件方法</h2>
 
 <b>iPicker 提供了六个方法：</b>
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0306/123227_4782b14c_5535128.png "iPicker.png")
 
 ```javascript
 var picker = iPicker( "#target", { ... } );
