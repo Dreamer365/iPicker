@@ -1,3 +1,23 @@
+### v4.0.0
+###### 2021-02-03
+- 新增
+    - data 属性下新增 when 属性；
+    - 增加 panel 主题；
+    - 增加 clearable 属性；
+    - 增加 onClear 属性；
+    - 增加 height 属性；
+    - 增加 disabledItem 属性；
+    - 增加 iPicker.disabledItem() 方法；
+    - 增加 iPicker.enabledItem() 方法；
+    - 增加位置自动检测功能，当组件处于可视区域底部时，列表会自动调整为在上方显示；
+- 修复
+    - 修复 v3.0.0 版本中调用 iPicker.clear() 方法后仍能获取到选中值的 bug；
+- 变更
+    - 不再兼容 IE 浏览器；
+    - 移除了 activeStyle 属性，现在要改变主题颜色需要手动设置 css 代码来实现；
+    - arrowTheme 属性改名为 icon，同时属性值变为：triangle 和 arrow；
+    - radius 默认值由 4px 改为 2px。
+    
 ### v3.0.0
 ###### 2020-11-27
 - 新增
