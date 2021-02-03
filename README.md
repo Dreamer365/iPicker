@@ -613,7 +613,7 @@ iPicker.disabledItem( picker, [ "230000" ] );
 <hr/>
 
 <h2 id="k">开源协议</h2>
-<p><a href="https://gitee.com/dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
+<p><a href="https://github.com/Dreamer365/iPicker/blob/master/LICENSE">MIT License</a></p>
 
 <hr/>
 
